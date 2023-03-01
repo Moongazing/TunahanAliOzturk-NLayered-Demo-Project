@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using TunahanAliOzturk.Core.Entities;
-
+using TunahanAliOzturk.Core.Models;
+    
 namespace TunahanAliOzturk.Repository
 {
     public class AppDbContext:DbContext
