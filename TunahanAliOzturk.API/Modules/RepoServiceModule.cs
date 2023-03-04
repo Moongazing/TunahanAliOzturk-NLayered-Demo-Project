@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System.Reflection;
+using TunahanAliOzturk.Caching;
 using TunahanAliOzturk.Core.Repositories;
 using TunahanAliOzturk.Core.Services;
 using TunahanAliOzturk.Core.UnitOfWorks;
@@ -37,6 +38,7 @@ namespace TunahanAliOzturk.API.Modules
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
 
 
