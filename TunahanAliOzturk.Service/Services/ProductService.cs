@@ -12,22 +12,22 @@ using TunahanAliOzturk.Core.UnitOfWorks;
 
 namespace TunahanAliOzturk.Service.Services
 {
-    public class ProductServiceWithNoCaching : Service<Product>, IProductService
+    public class ProductService : Service<Product>, IProductService
     {
         private readonly IProductRepository _produductRepository;
         private readonly IMapper _mapper;
-        public ProductServiceWithNoCaching(IGenericRepository<Product> repository, IUnitOfWork unitOfWork,IMapper mapper, IProductRepository productRepository):base(repository,unitOfWork)
+        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork,IMapper mapper, IProductRepository productRepository):base(repository,unitOfWork)
         {
             _produductRepository = productRepository;
             _mapper = mapper;
         }
-        public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
             var products = await _produductRepository.GetProductsWithCategory();
 
             var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
 
-            return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,productsDto);
+            return productsDto;
         }
     }
 }
